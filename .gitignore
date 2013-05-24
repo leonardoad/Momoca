@@ -2,3 +2,7 @@
 /build/
 /nbproject/*
 build.xml
+
+# Database Settings #
+#####################
+databaseSettings.properties
