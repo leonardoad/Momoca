@@ -38,6 +38,7 @@ public class TelaCadastroProduto extends JFrame {
     JFormattedTextField ftfPreco;
     JButton btnCadastrar;
     JButton btnAdicionarFoto;
+    private boolean test = false;
 
     /**
      * Launch the application.
@@ -119,9 +120,8 @@ public class TelaCadastroProduto extends JFrame {
 
         cbCategoria = new JComboBox();
         cbCategoria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-
-                if (cbCategoria.getSelectedIndex() == 0) {
+            public void actionPerformed(ActionEvent arg0) {                
+                if (cbCategoria.getSelectedIndex() == 0 && test==true) {
                     String novaCategoria = JOptionPane
                             .showInputDialog("Digite a nova categoria: ");
                     try {
@@ -135,7 +135,7 @@ public class TelaCadastroProduto extends JFrame {
                         e.printStackTrace();
                     }
 
-                }
+                }test = true;
 
             }
         });
