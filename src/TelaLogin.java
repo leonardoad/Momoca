@@ -99,10 +99,17 @@ public class TelaLogin extends JFrame {
                                 conexao.executarSQL("select count(*) as count from usuario where login = '"+user+"' and senha = '"+pass+"'");
                                 conexao.resultSet.first();
                                 if(conexao.resultSet.getString("count").equals("1")){
-                                    TelaCadastroProduto tcp = new TelaCadastroProduto();
-                                    tcp.setVisible(true);
-                                }
-                            } catch (SQLException ex) {
+                                    conexao.executarSQL("select * from usuario where login = '"+user+"' and senha = '"+pass+"'");
+                                    conexao.resultSet.first();
+                                    if(conexao.resultSet.getString("cargo").equals("gerencia")){
+                                        TelaCadastroProduto tcp = new TelaCadastroProduto();
+                                        tcp.setVisible(true);
+                                    } else if(conexao.resultSet.getString("cargo").equals("vendas")){
+                                        TelaVenda tv = new TelaVenda();
+                                        tv.setVisible(true);
+                                    }
+                                }else JOptionPane.showMessageDialog(null, "Usuário/senha inválido(s)!", "Erro", 2);
+                            }catch (SQLException ex) {
                                 Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
                             }
 			}
