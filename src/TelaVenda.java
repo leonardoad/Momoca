@@ -31,7 +31,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import ultilitarios.Conexao;
+import utilitarios.Conexao;
 
 public class TelaVenda extends JFrame {
 

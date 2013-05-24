@@ -22,7 +22,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import ultilitarios.Conexao;
+import utilitarios.Conexao;
 
 public class TelaCadastroProduto extends JFrame {
 
