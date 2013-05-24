@@ -62,8 +62,8 @@ public class TelaCadastroProduto extends JFrame {
 
         conexao = new Conexao();
         conexao.conecta();
-        conexao.executarSQL("select * from categoria");
-        conexao.executarSQL("select * from produto");
+        //conexao.executarSQL("select * from categoria");
+        //conexao.executarSQL("select * from produto");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 786, 393);

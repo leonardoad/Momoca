@@ -1,5 +1,4 @@
-
-import java.awt.BorderLayout;
+import utilitarios.Conexao;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,6 +17,10 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class TelaLogin extends JFrame {
@@ -25,6 +28,7 @@ public class TelaLogin extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField pfSenha;
 	private JTextField tfId;
+        private Conexao conexao;
 
 	/**
 	 * Launch the application.
@@ -84,12 +88,33 @@ public class TelaLogin extends JFrame {
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setIcon(new ImageIcon("Imagens/LoginIcon.png"));
+                btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+                            conexao = new Conexao();
+                            conexao.conecta();
+                            String user = tfId.getText();
+                            String pass = new String(pfSenha.getPassword());
+                            
+                            try {
+                                conexao.executarSQL("select count(*) as count from usuario where login = '"+user+"' and senha = '"+pass+"'");
+                                conexao.resultSet.first();
+                                if(conexao.resultSet.getString("count").equals("1")){
+                                    TelaCadastroProduto tcp = new TelaCadastroProduto();
+                                    tcp.setVisible(true);
+                                }
+                            } catch (SQLException ex) {
+                                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+			}
+		});
 		btnLogin.setBounds(20, 206, 109, 23);
 		panel.add(btnLogin);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Limpar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+                            pfSenha.setText("");
+                            tfId.setText("");
 			}
 		});
 		btnCancelar.setIcon(new ImageIcon("Imagens/cancelar.png"));
