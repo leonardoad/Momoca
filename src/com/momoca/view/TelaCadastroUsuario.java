@@ -1,3 +1,4 @@
+package com.momoca.view;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
