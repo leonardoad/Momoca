@@ -33,6 +33,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import utilitarios.Conexao;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 public class TelaVenda extends JFrame {
 
@@ -60,7 +62,9 @@ public class TelaVenda extends JFrame {
 				try {
 					TelaVenda frame = new TelaVenda();
 					frame.setVisible(true);
-
+					frame.setSize(1100, 680);
+					
+                    frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,14 +76,16 @@ public class TelaVenda extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaVenda() {
+		setTitle("Sistema de Vensdas");
+		setMaximizedBounds(new Rectangle(0, 0, 0, 0));
 
 		conexao = new Conexao();
 		conexao.conecta();
 
 		conexao.executarSQL("select * from produto");
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1090, 715);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 1158, 782);
 		contentPane = new JPanel();
 
 		contentPane.setBackground(UIManager.getColor("CheckBox.light"));
@@ -87,26 +93,32 @@ public class TelaVenda extends JFrame {
 		setContentPane(contentPane);
 
 		JLabel lblTotal = new JLabel("Total R$");
+		lblTotal.setBounds(463, 22, 161, 58);
 		lblTotal.setFont(new Font("Verdana", Font.PLAIN, 35));
 
 		tfTotal = new JTextField();
+		tfTotal.setBounds(668, 22, 197, 58);
 		tfTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfTotal.setEditable(false);
 		tfTotal.setFont(new Font("Verdana", Font.PLAIN, 35));
 		tfTotal.setColumns(10);
 
 		JLabel lblProduto = new JLabel("Valor Unit\u00E1rio R$");
+		lblProduto.setBounds(685, 479, 180, 31);
 		lblProduto.setFont(new Font("Verdana", Font.PLAIN, 20));
 
 		tfDescricao = new JTextPane();
+		tfDescricao.setBounds(685, 394, 363, 74);
 		tfDescricao.setEditable(false);
 		tfDescricao.setFont(new Font("Verdana", Font.PLAIN, 20));
 
 		JLabel lblPreoUnitrio = new JLabel("Qnt");
+		lblPreoUnitrio.setBounds(971, 317, 77, 31);
 		lblPreoUnitrio.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPreoUnitrio.setFont(new Font("Verdana", Font.PLAIN, 20));
 
 		tfCodigo = new JTextField();
+		tfCodigo.setBounds(685, 353, 207, 30);
 		tfCodigo.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -139,9 +151,11 @@ public class TelaVenda extends JFrame {
 		tfCodigo.setColumns(10);
 
 		JLabel lblQuantidade = new JLabel("C\u00F3digo de Barras");
+		lblQuantidade.setBounds(685, 317, 233, 31);
 		lblQuantidade.setFont(new Font("Verdana", Font.PLAIN, 20));
 
 		tfQuantidade = new JTextField();
+		tfQuantidade.setBounds(971, 353, 77, 30);
 		tfQuantidade.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -167,16 +181,19 @@ public class TelaVenda extends JFrame {
 		tfQuantidade.setColumns(10);
 
 		lblFoto = new JLabel("");
+		lblFoto.setBounds(685, 114, 363, 192);
 		lblFoto.setIcon(new ImageIcon("Imagens/pao.jpg"));
 		lblFoto.setOpaque(true);
 
 		tfValorUni = new JTextField();
+		tfValorUni.setBounds(926, 483, 122, 30);
 		tfValorUni.setEditable(false);
 		tfValorUni.setFont(new Font("Verdana", Font.PLAIN, 20));
 		tfValorUni.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfValorUni.setColumns(10);
 
 		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 114, 648, 512);
 
 		tbLista = new JTable();
 
@@ -205,6 +222,7 @@ public class TelaVenda extends JFrame {
 		popupMenu.add(mntmRemover);
 
 		JPanel panel = new JPanel();
+		panel.setBounds(685, 519, 363, 107);
 		panel.setBorder(new TitledBorder(null, "Op\u00E7\u00F5es",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setForeground(new Color(255, 255, 255));
@@ -218,230 +236,26 @@ public class TelaVenda extends JFrame {
 		panel.add(lblF2);
 
 		JLabel label = new JLabel("");
+		label.setSize(291, 83);
+		label.setOpaque(true);
 		label.setVerticalAlignment(SwingConstants.TOP);
+		label.setVerticalTextPosition(SwingConstants.TOP);
+		label.setLocation(new Point(10, 11));
 		label.setIcon(new ImageIcon("Imagens/logoLogin.png"));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane
-				.setHorizontalGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_contentPane
-										.createSequentialGroup()
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addGap(5)
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.TRAILING)
-																						.addComponent(
-																								scrollPane,
-																								GroupLayout.DEFAULT_SIZE,
-																								668,
-																								Short.MAX_VALUE)
-																						.addGroup(
-																								gl_contentPane
-																										.createSequentialGroup()
-																										.addGap(152)
-																										.addComponent(
-																												lblTotal,
-																												GroupLayout.PREFERRED_SIZE,
-																												161,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addGap(44)
-																										.addComponent(
-																												tfTotal,
-																												GroupLayout.PREFERRED_SIZE,
-																												197,
-																												GroupLayout.PREFERRED_SIZE)))
-																		.addGap(18)
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addGroup(
-																								gl_contentPane
-																										.createSequentialGroup()
-																										.addComponent(
-																												lblQuantidade,
-																												GroupLayout.PREFERRED_SIZE,
-																												233,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addGap(53)
-																										.addComponent(
-																												lblPreoUnitrio,
-																												GroupLayout.PREFERRED_SIZE,
-																												77,
-																												GroupLayout.PREFERRED_SIZE))
-																						.addGroup(
-																								gl_contentPane
-																										.createSequentialGroup()
-																										.addComponent(
-																												tfCodigo,
-																												GroupLayout.PREFERRED_SIZE,
-																												207,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addGap(79)
-																										.addComponent(
-																												tfQuantidade,
-																												GroupLayout.PREFERRED_SIZE,
-																												77,
-																												GroupLayout.PREFERRED_SIZE))
-																						.addComponent(
-																								tfDescricao,
-																								GroupLayout.PREFERRED_SIZE,
-																								363,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addGroup(
-																								gl_contentPane
-																										.createSequentialGroup()
-																										.addComponent(
-																												lblProduto,
-																												GroupLayout.PREFERRED_SIZE,
-																												180,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addGap(61)
-																										.addComponent(
-																												tfValorUni,
-																												GroupLayout.PREFERRED_SIZE,
-																												122,
-																												GroupLayout.PREFERRED_SIZE))
-																						.addComponent(
-																								panel,
-																								GroupLayout.PREFERRED_SIZE,
-																								363,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								lblFoto,
-																								GroupLayout.PREFERRED_SIZE,
-																								363,
-																								GroupLayout.PREFERRED_SIZE)))
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addContainerGap()
-																		.addComponent(
-																				label,
-																				GroupLayout.PREFERRED_SIZE,
-																				460,
-																				GroupLayout.PREFERRED_SIZE)))
-										.addContainerGap()));
-		gl_contentPane
-				.setVerticalGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_contentPane
-										.createSequentialGroup()
-										.addComponent(label,
-												GroupLayout.PREFERRED_SIZE, 83,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addComponent(
-																				lblFoto,
-																				GroupLayout.PREFERRED_SIZE,
-																				210,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(29)
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								lblQuantidade,
-																								GroupLayout.PREFERRED_SIZE,
-																								31,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								lblPreoUnitrio,
-																								GroupLayout.PREFERRED_SIZE,
-																								31,
-																								GroupLayout.PREFERRED_SIZE))
-																		.addGap(5)
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								tfCodigo,
-																								GroupLayout.PREFERRED_SIZE,
-																								30,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								tfQuantidade,
-																								GroupLayout.PREFERRED_SIZE,
-																								30,
-																								GroupLayout.PREFERRED_SIZE))
-																		.addGap(11)
-																		.addComponent(
-																				tfDescricao,
-																				GroupLayout.PREFERRED_SIZE,
-																				74,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(11)
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								lblProduto,
-																								GroupLayout.PREFERRED_SIZE,
-																								31,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addGroup(
-																								gl_contentPane
-																										.createSequentialGroup()
-																										.addGap(4)
-																										.addComponent(
-																												tfValorUni,
-																												GroupLayout.PREFERRED_SIZE,
-																												30,
-																												GroupLayout.PREFERRED_SIZE)))
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED,
-																				8,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				panel,
-																				GroupLayout.PREFERRED_SIZE,
-																				135,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addComponent(
-																				scrollPane,
-																				GroupLayout.DEFAULT_SIZE,
-																				509,
-																				Short.MAX_VALUE)
-																		.addGap(11)
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								lblTotal,
-																								GroupLayout.PREFERRED_SIZE,
-																								58,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								tfTotal,
-																								GroupLayout.PREFERRED_SIZE,
-																								58,
-																								GroupLayout.PREFERRED_SIZE))))));
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(null);
+		contentPane.add(lblTotal);
+		contentPane.add(tfTotal);
+		contentPane.add(scrollPane);
+		contentPane.add(lblQuantidade);
+		contentPane.add(lblPreoUnitrio);
+		contentPane.add(tfCodigo);
+		contentPane.add(tfQuantidade);
+		contentPane.add(tfDescricao);
+		contentPane.add(lblProduto);
+		contentPane.add(tfValorUni);
+		contentPane.add(panel);
+		contentPane.add(lblFoto);
+		contentPane.add(label);
 
 		try {
 			UIManager

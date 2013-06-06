@@ -94,8 +94,10 @@ public class TelaLogin extends JFrame {
 					usuario = u.getRetornaUsuario(TfNome.getText(), TfSenha.getText());
 					
 					if(usuario != null){
-						TelaVenda telaVenda = new TelaVenda();
-						telaVenda.setVisible(true);						
+						Principal tela = new Principal();
+						tela.setSize(1100, 680);
+						tela.setLocationRelativeTo(null);
+						tela.setVisible(true);						
 					}else
 						JOptionPane.showMessageDialog(null, "Nome/senha incorretos!");
 					

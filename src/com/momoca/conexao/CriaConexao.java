@@ -13,7 +13,7 @@ package com.momoca.conexao;
 
 
 				// Carregando o Driver JDBC (do RDBMS PostgreSQL)
-				DriverManager.registerDriver(new org.postgresql.Driver());
+//				DriverManager.registerDriver(new org.postgresql.Driver());
 				
 				System.out.println("Conectando.....");
 				return DriverManager.getConnection(

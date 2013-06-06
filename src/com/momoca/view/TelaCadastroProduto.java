@@ -1,3 +1,5 @@
+package com.momoca.view;
+
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -7,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -60,13 +62,14 @@ public class TelaCadastroProduto extends JFrame {
      * Create the frame.
      */
     public TelaCadastroProduto() {
+    	setTitle("Cadastro de produtos");
 
         conexao = new Conexao();
         conexao.conecta();
         //conexao.executarSQL("select * from categoria");
         //conexao.executarSQL("select * from produto");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 786, 393);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

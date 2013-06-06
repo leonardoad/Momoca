@@ -10,11 +10,11 @@ import com.momoca.model.Usuario;
 
 public class UsuarioDao {
 
-	private Connection conexao;
+	private Connection con;
 	private Usuario usuarios;
 
 	public UsuarioDao() throws SQLException {
-		this.conexao = CriaConexao.getConexao();
+		this.con = CriaConexao.getConexao();
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class UsuarioDao {
 		String sql = "Insert into usuarios(nome,senha)" + " values (?,?)";
 		PreparedStatement stmt = null;
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = con.prepareStatement(sql);
 			// seta os valores
 			stmt.setString(1, u.getNome());
 			stmt.setString(2, u.getSenha());
@@ -57,7 +57,7 @@ public class UsuarioDao {
 
 		PreparedStatement stmt = null;
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = con.prepareStatement(sql);
 			// seta os valores
 			stmt.setString(1, nome);
 			stmt.setString(2, senha);

@@ -32,8 +32,7 @@ ALTER TABLE produto
   CREATE TABLE usuario
 (
   id serial NOT NULL,
-  nome name,
-  cargo text,
+  nome varchar(50),
   senha character varying(24),
   CONSTRAINT usuario_pkey PRIMARY KEY (id)
 )
