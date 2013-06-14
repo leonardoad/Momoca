@@ -17,12 +17,19 @@ public class Teste {
 		u2.setNome("fernando");
 		u2.setSenha("8765");
 		
-		UsuarioDao usuario = new UsuarioDao();
+		UsuarioDao usuario;
+		try {
+			usuario = new UsuarioDao();
+			
+			Usuario u3 = usuario.getRetornaUsuario("sergio", "1234");
+			System.out.println(u3.getNome() + " " + u3.getSenha());
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		usuario.adicionaUsuario(u);
 //		usuario.adicionaUsuario(u2);
-		
-		Usuario u3 = usuario.getRetornaUsuario("sergio", "1234");
-		System.out.println(u3.getNome() + " " + u3.getSenha());
 		
 	}
 }

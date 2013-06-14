@@ -101,7 +101,7 @@ public class TelaLogin extends JFrame {
 					}else
 						JOptionPane.showMessageDialog(null, "Nome/senha incorretos!");
 					
-				} catch (SQLException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

@@ -32,7 +32,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import utilitarios.Conexao;
+import com.momoca.conexao.Conexao;
+
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -80,7 +81,11 @@ public class TelaVenda extends JFrame {
 		setMaximizedBounds(new Rectangle(0, 0, 0, 0));
 
 		conexao = new Conexao();
-		conexao.conecta();
+		try {
+			conexao.getConexao();
+		} catch (Exception e1) {
+			e1.getMessage();
+		}
 
 		conexao.executarSQL("select * from produto");
 

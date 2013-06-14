@@ -24,7 +24,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import utilitarios.Conexao;
+import com.momoca.conexao.Conexao;
+
 
 public class TelaCadastroProduto extends JFrame {
 
@@ -65,7 +66,11 @@ public class TelaCadastroProduto extends JFrame {
     	setTitle("Cadastro de produtos");
 
         conexao = new Conexao();
-        conexao.conecta();
+        try {
+			conexao.getConexao();
+		} catch (Exception e1) {
+			e1.getMessage();
+		}
         //conexao.executarSQL("select * from categoria");
         //conexao.executarSQL("select * from produto");
 
@@ -76,9 +81,9 @@ public class TelaCadastroProduto extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblDescricao = new JLabel("Descrição:");
+        JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
         lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblDescricao.setBounds(10, 150, 72, 14);
+        lblDescricao.setBounds(10, 150, 106, 14);
         contentPane.add(lblDescricao);
 
         JLabel lblCategoria = new JLabel("Categoria:");
@@ -91,9 +96,9 @@ public class TelaCadastroProduto extends JFrame {
         lblQuantidadeEstoque.setBounds(10, 230, 137, 14);
         contentPane.add(lblQuantidadeEstoque);
 
-        JLabel lblPreco = new JLabel("Preço:");
+        JLabel lblPreco = new JLabel("Pre\u00E7o:");
         lblPreco.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblPreco.setBounds(10, 266, 46, 14);
+        lblPreco.setBounds(10, 266, 95, 14);
         contentPane.add(lblPreco);
 
         tfCod = new JTextField();

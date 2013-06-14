@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.momoca.conexao.CriaConexao;
+import com.momoca.conexao.Conexao;
 import com.momoca.model.Usuario;
 
 public class UsuarioDao {
@@ -13,8 +13,8 @@ public class UsuarioDao {
 	private Connection con;
 	private Usuario usuarios;
 
-	public UsuarioDao() throws SQLException {
-		this.con = CriaConexao.getConexao();
+	public UsuarioDao() throws Exception {
+		this.con = Conexao.getConexao();
 	}
 
 	/**
@@ -68,12 +68,12 @@ public class UsuarioDao {
 				usuarioEncontrado.setNome(rs.getString("nome"));
 				usuarioEncontrado.setSenha(rs.getString("senha"));
 				System.out.println("usuario encontrado");
+			} else {
+				System.out.println("usuario não encontrado");
 			}
-		
 
-		
 		} catch (SQLException e) {
-			System.out.println("Usuario não encontrado");
+			e.getMessage();
 		} finally {
 
 			stmt.close();
