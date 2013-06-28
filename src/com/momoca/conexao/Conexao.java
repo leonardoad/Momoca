@@ -2,7 +2,6 @@ package com.momoca.conexao;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,7 +13,7 @@ import javax.swing.JOptionPane;
 
 public class Conexao {
 
-	private String driver;
+
 	private static Connection conexao;
 	public Statement statement;
 	public ResultSet resultSet;
@@ -28,7 +27,7 @@ public class Conexao {
 			Properties settings = new Properties();
 	        settings.load(new FileInputStream(file));
 	        
-	        String driver = settings.getProperty("driver");
+	   
 	        String host = settings.getProperty("host");
 	        String port = settings.getProperty("port");
 	        String database = settings.getProperty("database");
